@@ -1,0 +1,7 @@
+[packages.linux]
+packages = [
+  "fzf",
+  "exa",
+  "eza",
+  "tmux",
+]
