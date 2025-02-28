@@ -12,6 +12,8 @@ add nvim config
 figure out adding ssh keys with rage
 add rage to installer
 
+add cryptomator for linux and windows
+
 create scoop installer for windows
 
 - Install chezmoi and init, apply, and delete binary: _([docs](https://www.chezmoi.io/install))_
