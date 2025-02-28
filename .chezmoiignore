@@ -20,8 +20,14 @@ zsh-checking.sh
 .p10k.zsh
 {{ end }}
 
+{{ if ne .chezmoi.os "windows" }}
+.chezmoiscripts/windows/**
+.local/bin/*.bat
+.local/bin/*.reg
+.local/bin/*.ps1
+{{ end }}
 
-{{ if eq .osRelease.id "windows" }}
+{{ if eq .chezmoi.os "windows" }}
 
 {{ else }}
 
