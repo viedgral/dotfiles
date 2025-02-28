@@ -1,7 +1,17 @@
 [packages.linux]
 packages = [
+  "curl",
   "fzf",
   "exa",
   "eza",
+  "git",
+  "rage",
+  "rustup",
+  "ripgrep",
   "tmux",
+  "uv",
+]
+
+cmd = [
+  ["uv", "uv", "curl -LsSf https://astral.sh/uv/install.sh | sh"]
 ]
