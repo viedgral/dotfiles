@@ -55,46 +55,46 @@ function install_package() {
   fi
 }
 
-{{ if not .miniPackages }}
-  {{ range .packages.linux.packages }}
-package={{ . | quote }}
-install_package $package
-  {{ end }}
-{{ else }}
-  {{ range .packages.linux.miniPackages }}
-package={{ . | quote }}
-install_package $package
-  {{ end }}
-{{ end }}
+# {{ if not .miniPackages }}
+#   {{ range .packages.linux.packages }}
+# package={{ . | quote }}
+# install_package $package
+#   {{ end }}
+# {{ else }}
+#   {{ range .packages.linux.miniPackages }}
+# package={{ . | quote }}
+# install_package $package
+#   {{ end }}
+# {{ end }}
 
-function install_cmd(){
-  package=${@}
-  # Remove the square brackets
-  content=${package#[}
-  content=${content%]}
-  # Use read to split into variables
-  read package_name judge_cmd install_cmd <<< "$(echo "$content" | awk '{print $1, $2, substr($0, index($0,$3))}')"
+# function install_cmd(){
+#   package=${@}
+#   # Remove the square brackets
+#   content=${package#[}
+#   content=${content%]}
+#   # Use read to split into variables
+#   read package_name judge_cmd install_cmd <<< "$(echo "$content" | awk '{print $1, $2, substr($0, index($0,$3))}')"
+# 
+#   if ! command -v ${judge_cmd} >/dev/null; then
+#     echo -e "${INFO}Installing ${package_name}... ${CMD}${install_cmd}"
+#     eval "${install_cmd}"
+#     echo -en ${NC}
+#   else
+#     echo -e "${HIGHLIGHT}${package_name}\tis already installed. Skipping...\t${CMD}${install_cmd}${NC}"
+#   fi
+# }
 
-  if ! command -v ${judge_cmd} >/dev/null; then
-    echo -e "${INFO}Installing ${package_name}... ${CMD}${install_cmd}"
-    eval "${install_cmd}"
-    echo -en ${NC}
-  else
-    echo -e "${HIGHLIGHT}${package_name}\tis already installed. Skipping...\t${CMD}${install_cmd}${NC}"
-  fi
-}
-
-{{ if not .miniPackages }}
-  {{ range .packages.linux.cmd}}
-package={{ . | quote }}
-install_cmd $package
-  {{ end -}}
-{{ else }}
-  {{ range .packages.linux.miniCmd}}
-package={{ . | quote }}
-install_cmd $package
-  {{ end }}
-{{ end }}
+# {{ if not .miniPackages }}
+#   {{ range .packages.linux.cmd}}
+# package={{ . | quote }}
+# install_cmd $package
+#   {{ end -}}
+# {{ else }}
+#   {{ range .packages.linux.miniCmd}}
+# package={{ . | quote }}
+# install_cmd $package
+#   {{ end }}
+# {{ end }}
 
 echo -e "${SUCCESS}All packages installed successfully.${NC}"
 {{ end -}}
