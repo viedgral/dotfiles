@@ -2,4 +2,9 @@ README.md
 {{- if ne .chezmoi.os "linux"}}
 .config/komorebi/komorebi.json
 {{- end}}
+
+{{- if ne .chezmoi.osRelease.name "Ubuntu"}}
+.chezmoiscripts
+{{- end}}
+
 key.txt.age
