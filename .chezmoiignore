@@ -21,7 +21,7 @@ zsh-checking.sh
 {{ end }}
 
 
-{{ if eq .osId "windows" }}
+{{ if eq .osRelease.id "windows" }}
 
 {{ else }}
 
