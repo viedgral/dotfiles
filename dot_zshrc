@@ -94,3 +94,6 @@ HISTSIZE=1000
 SAVEHIST=1000
 bindkey -v
 eval "$(starship init zsh)"
+
+if [ -z $TMUX ]; then; tmux -t TMUX || tmux new -s TMUX; fi
+
