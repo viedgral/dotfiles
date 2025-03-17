@@ -1,145 +1,145 @@
 return {
-  "renerocksai/telekasten.nvim",
-  dependencies = { "nvim-telescope/telescope.nvim" },
-  config = function()
-    require("telekasten").setup({
+	"renerocksai/telekasten.nvim",
+	dependencies = { "nvim-telescope/telescope.nvim" },
+	config = function()
+		require("telekasten").setup({
 
-      -- Main paths
-      
-      home = "{{ keepassxcAttribute "telekasten" "vault_path" }}", -- path to main notes folder
-      dailies = "{{ keepassxcAttribute "telekasten" "vault_path" }}/dailies", -- path to daily notes
-      weeklies = "{{ keepassxcAttribute "telekasten" "vault_path" }}/weeklies", -- path to weekly notes
-      templates = "{{ keepassxcAttribute "telekasten" "vault_path" }}/templates", -- path to templates
+			-- Main paths
 
-      -- Specific note templates
-      -- set to `nil` or do not specify if you do not want a template
-      template_new_note = nil, -- "/path/to/file", -- template for new notes
-      template_new_daily = "{{ keepassxcAttribute "telekasten" "vault_path" }}/templates/template_new_daily.md", -- "/path/to/file", -- template for new daily notes
-      template_new_weekly = nil, -- "/path/to/file", -- template for new weekly notes
+			home = "{{ .chezmoi.homeDir }}/zettelkasten", -- path to main notes folder
+			dailies = "{{ .chezmoi.homeDir }}/zettelkasten/dailies", -- path to daily notes
+			weeklies = "{{ .chezmoi.homeDir }}/zettelkasten/weeklies", -- path to weekly notes
+			templates = "{{ .chezmoi.homeDir }}/zettelkasten/templates", -- path to templates
 
-      -- Image subdir for pasting
-      -- subdir name
-      -- or nil if pasted images shouldn't go into a special subdir
-      image_subdir = "img",
+			-- Specific note templates
+			-- set to `nil` or do not specify if you do not want a template
+			template_new_note = nil, -- "/path/to/file", -- template for new notes
+			template_new_daily = "{{ .chezmoi.homeDir }}/zettelkasten/templates/template_new_daily.md", -- "/path/to/file", -- template for new daily notes
+			template_new_weekly = nil, -- "/path/to/file", -- template for new weekly notes
 
-      -- File extension for note files
-      extension = ".md",
+			-- Image subdir for pasting
+			-- subdir name
+			-- or nil if pasted images shouldn't go into a special subdir
+			image_subdir = "img",
 
-      -- Generate note filenames. One of:
-      -- "title" (default) - Use title if supplied, uuid otherwise
-      -- "uuid" - Use uuid
-      -- "uuid-title" - Prefix title by uuid
-      -- "title-uuid" - Suffix title with uuid
-      new_note_filename = "title",
-      -- file uuid type ("rand" or input for os.date such as "%Y%m%d%H%M")
-      uuid_type = "%Y%m%d%H%M",
-      -- UUID separator
-      uuid_sep = "-",
+			-- File extension for note files
+			extension = ".md",
 
-      -- Flags for creating non-existing notes
-      follow_creates_nonexisting = true, -- create non-existing on follow
-      dailies_create_nonexisting = true, -- create non-existing dailies
-      weeklies_create_nonexisting = true, -- create non-existing weeklies
+			-- Generate note filenames. One of:
+			-- "title" (default) - Use title if supplied, uuid otherwise
+			-- "uuid" - Use uuid
+			-- "uuid-title" - Prefix title by uuid
+			-- "title-uuid" - Suffix title with uuid
+			new_note_filename = "title",
+			-- file uuid type ("rand" or input for os.date such as "%Y%m%d%H%M")
+			uuid_type = "%Y%m%d%H%M",
+			-- UUID separator
+			uuid_sep = "-",
 
-      -- skip telescope prompt for goto_today and goto_thisweek
-      journal_auto_open = false,
+			-- Flags for creating non-existing notes
+			follow_creates_nonexisting = true, -- create non-existing on follow
+			dailies_create_nonexisting = true, -- create non-existing dailies
+			weeklies_create_nonexisting = true, -- create non-existing weeklies
 
-      -- Image link style",
-      -- wiki:     ![[image name]]
-      -- markdown: ![](image_subdir/xxxxx.png)
-      image_link_style = "markdown",
+			-- skip telescope prompt for goto_today and goto_thisweek
+			journal_auto_open = false,
 
-      -- Default sort option: 'filename', 'modified'
-      sort = "filename",
+			-- Image link style",
+			-- wiki:     ![[image name]]
+			-- markdown: ![](image_subdir/xxxxx.png)
+			image_link_style = "markdown",
 
-      -- Make syntax available to markdown buffers and telescope previewers
-      install_syntax = true,
+			-- Default sort option: 'filename', 'modified'
+			sort = "filename",
 
-      -- Tag notation: '#tag', '@tag', ':tag:', 'yaml-bare'
-      tag_notation = "#tag",
+			-- Make syntax available to markdown buffers and telescope previewers
+			install_syntax = true,
 
-      -- When linking to a note in subdir/, create a [[subdir/title]] link
-      -- instead of a [[title only]] link
-      subdirs_in_links = true,
+			-- Tag notation: '#tag', '@tag', ':tag:', 'yaml-bare'
+			tag_notation = "#tag",
 
-      -- Command palette theme: dropdown (window) or ivy (bottom panel)
-      command_palette_theme = "ivy",
+			-- When linking to a note in subdir/, create a [[subdir/title]] link
+			-- instead of a [[title only]] link
+			subdirs_in_links = true,
 
-      -- Tag list theme:
-      -- get_cursor (small tag list at cursor)
-      -- dropdown (window)
-      -- ivy (bottom panel)
-      show_tags_theme = "ivy",
+			-- Command palette theme: dropdown (window) or ivy (bottom panel)
+			command_palette_theme = "ivy",
 
-      -- Previewer for media files (images mostly)
-      -- "telescope-media-files" if you have telescope-media-files.nvim installed
-      -- "catimg-previewer" if you have catimg installed
-      -- "viu-previewer" if you have viu installed
-      media_previewer = "telescope-media-files",
+			-- Tag list theme:
+			-- get_cursor (small tag list at cursor)
+			-- dropdown (window)
+			-- ivy (bottom panel)
+			show_tags_theme = "ivy",
 
-      -- Customize insert image and preview image files list. This is useful
-      -- to add optional filetypes into filtered list (for example
-      -- telescope-media-files optionally supporting svg preview)
-      media_extensions = {
-        ".png",
-        ".jpg",
-        ".bmp",
-        ".gif",
-        ".pdf",
-        ".mp4",
-        ".webm",
-        ".webp",
-      },
+			-- Previewer for media files (images mostly)
+			-- "telescope-media-files" if you have telescope-media-files.nvim installed
+			-- "catimg-previewer" if you have catimg installed
+			-- "viu-previewer" if you have viu installed
+			media_previewer = "telescope-media-files",
 
-      -- Calendar integration
-      plug_into_calendar = true, -- use calendar integration
-      calendar_opts = {
-        weeknm = 1, -- calendar week display mode:
-        --   1 .. 'WK01'
-        --   2 .. 'WK 1'
-        --   3 .. 'KW01'
-        --   4 .. 'KW 1'
-        --   5 .. '1'
+			-- Customize insert image and preview image files list. This is useful
+			-- to add optional filetypes into filtered list (for example
+			-- telescope-media-files optionally supporting svg preview)
+			media_extensions = {
+				".png",
+				".jpg",
+				".bmp",
+				".gif",
+				".pdf",
+				".mp4",
+				".webm",
+				".webp",
+			},
 
-        calendar_monday = 1, -- use monday as first day of week:
-        --   1 .. true
-        --   0 .. false
+			-- Calendar integration
+			plug_into_calendar = true, -- use calendar integration
+			calendar_opts = {
+				weeknm = 1, -- calendar week display mode:
+				--   1 .. 'WK01'
+				--   2 .. 'WK 1'
+				--   3 .. 'KW01'
+				--   4 .. 'KW 1'
+				--   5 .. '1'
 
-        calendar_mark = "left-fit", -- calendar mark placement
-        -- where to put mark for marked days:
-        --   'left'
-        --   'right'
-        --   'left-fit'
-      },
+				calendar_monday = 1, -- use monday as first day of week:
+				--   1 .. true
+				--   0 .. false
 
-      vaults = {
-        personal = {
-          -- configuration for personal vault. E.g.:
-          home = "{{ keepassxcAttribute "telekasten" "vault_path" }}",
-        },
-      },
+				calendar_mark = "left-fit", -- calendar mark placement
+				-- where to put mark for marked days:
+				--   'left'
+				--   'right'
+				--   'left-fit'
+			},
 
-      -- Specify a clipboard program to use
-      clipboard_program = "xclip", -- xsel, xclip, wl-paste, osascript
-    })
+			vaults = {
+				personal = {
+					-- configuration for personal vault. E.g.:
+					home = "{{ .chezmoi.homeDir }}/zettelkasten",
+				},
+			},
 
-    require("vim.treesitter.language").register("markdown", "telekasten")
+			-- Specify a clipboard program to use
+			clipboard_program = "xclip", -- xsel, xclip, wl-paste, osascript
+		})
 
-    -- Launch panel if nothing is typed after <leader>z
-    vim.keymap.set("n", "<leader>z", "<cmd>Telekasten panel<CR>")
+		require("vim.treesitter.language").register("markdown", "telekasten")
 
-    -- Most used functions
-    vim.keymap.set("n", "<leader>zf", "<cmd>Telekasten find_notes<CR>")
-    vim.keymap.set("n", "<leader>zg", "<cmd>Telekasten search_notes<CR>")
-    vim.keymap.set("n", "<leader>zd", "<cmd>Telekasten goto_today<CR>")
-    vim.keymap.set("n", "<leader>zz", "<cmd>Telekasten follow_link<CR>")
-    vim.keymap.set("n", "<leader>zn", "<cmd>Telekasten new_note<CR>")
-    vim.keymap.set("n", "<leader>zc", "<cmd>Telekasten show_calendar<CR>")
-    vim.keymap.set("n", "<leader>zb", "<cmd>Telekasten show_backlinks<CR>")
-    vim.keymap.set("n", "<leader>zI", "<cmd>Telekasten insert_img_link<CR>")
+		-- Launch panel if nothing is typed after <leader>z
+		vim.keymap.set("n", "<leader>z", "<cmd>Telekasten panel<CR>")
 
-    -- Call insert link automatically when we start typing a link
-    -- vim.keymap.set("i", "[[", "<cmd>Telekasten insert_link<CR>")
-    vim.treesitter.language.register("markdown", "telekasten")
-  end,
+		-- Most used functions
+		vim.keymap.set("n", "<leader>zf", "<cmd>Telekasten find_notes<CR>")
+		vim.keymap.set("n", "<leader>zg", "<cmd>Telekasten search_notes<CR>")
+		vim.keymap.set("n", "<leader>zd", "<cmd>Telekasten goto_today<CR>")
+		vim.keymap.set("n", "<leader>zz", "<cmd>Telekasten follow_link<CR>")
+		vim.keymap.set("n", "<leader>zn", "<cmd>Telekasten new_note<CR>")
+		vim.keymap.set("n", "<leader>zc", "<cmd>Telekasten show_calendar<CR>")
+		vim.keymap.set("n", "<leader>zb", "<cmd>Telekasten show_backlinks<CR>")
+		vim.keymap.set("n", "<leader>zI", "<cmd>Telekasten insert_img_link<CR>")
+
+		-- Call insert link automatically when we start typing a link
+		-- vim.keymap.set("i", "[[", "<cmd>Telekasten insert_link<CR>")
+		vim.treesitter.language.register("markdown", "telekasten")
+	end,
 }
