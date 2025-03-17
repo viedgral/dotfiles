@@ -17,3 +17,13 @@ encryption = "age"
   # package list is in {{ .chezmoi.sourceDir }}, you can use `chezmoi cd` to go to the source directory of chezmoi quickly
   # and find the list in `.chezmoidata/packages.toml`
   installUsefulPackages = true
+  vault_path = {{ keepassxcAttribute "telekasten" "vault_path" | quote }}
+
+{{- if eq .chezmoi.os "linux" }}
+{{-  if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+
+  # WSL-specific code
+  wsl = true
+
+{{-  end }}
+{{- end }}
