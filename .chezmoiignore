@@ -30,6 +30,7 @@ zsh-checking.sh
 {{ if eq .chezmoi.os "windows" }}
 .chezmoiscripts/ubuntu*
 *.sh
+.config/nvim/lua/plugins/image.lua
 {{ else }}
 
 .config/autohotkey/

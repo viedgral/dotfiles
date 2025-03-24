@@ -1,0 +1,4 @@
+if (!(Test-Path "{{ .chezmoi.homeDir }}/.config/key.txt"))
+  {
+  Invoke-Command 'chezmoi age decrypt --output "{{ .chezmoi.homeDir }}/.config/chezmoi/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"'
+  }
