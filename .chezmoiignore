@@ -28,7 +28,7 @@ zsh-checking.sh
 {{ end }}
 
 {{ if eq .chezmoi.os "windows" }}
-
+.chezmoiscripts/ubuntu*
 {{ else }}
 
 .config/autohotkey/
